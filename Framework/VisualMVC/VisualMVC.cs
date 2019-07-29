@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class VisualMVC:SingletonMVC<VisualMVC>
+public class VisualMVC:Singleton<VisualMVC>
 {
     //存储MVC
     public List<string> models=new List<string>();
@@ -20,20 +20,35 @@ public class VisualMVC:SingletonMVC<VisualMVC>
     //注册
     public void RegisterModel(VisualModel model){
         Models[model.Name]=model;
-        this.models.Add(model.Name);
+        if(!this.models.Contains(model.Name)){
+            this.models.Add(model.Name);
+        } 
     }
 
     public void RegisterView(VisualView view){
         Views[view.Name]=view;
-        this.views.Add(view.name);
+        if(!this.views.Contains(view.Name)){
+            this.views.Add(view.Name);
+        }
     }
 
     public void RegisterController(string eventName,Type controllerType){
         CommandMap[eventName]=controllerType;
-        this.commdMap.Add(eventName);
+        if(!this.commdMap.Contains(eventName)){
+            this.commdMap.Add(eventName);
+        }
     }
     
-    
+    //删除注册
+    public void RemoveModel(VisualModel model){
+        Models.Remove(model.Name);
+    }
+    public void RemoveView(VisualView view){
+        Models.Remove(view.Name);
+    }
+    public void RemoveController(string eventName){
+        CommandMap.Remove(eventName);
+    }
     //获取
     public VisualModel GetModel<T>()
         where T:VisualModel
