@@ -1,5 +1,6 @@
 # VisualMVC
 可视化MVC架构
+![Image text](https://github.com/intelHEART/VisualMVC/blob/master/MVC.png)
 搭建要求：
 1.创建游戏对象 MVC，models，Commands并添加上同名标签
 
